@@ -1,6 +1,8 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:jadroo/productShow/productDisplaySection.dart';
 
 import 'homePageOpt.dart';
 
@@ -16,7 +18,15 @@ final List<String> imgList=[
   "https://live.staticflickr.com/65535/48347413612_bd55840c0c_b.jpg",
   "https://live.staticflickr.com/65535/50382217741_3c4b6e394b_b.jpg"
 ];
+final iconList = <IconData>[
+  Icons.home_sharp,
+  Icons.apps_sharp,
+  Icons.chat_outlined,
+  Icons.account_circle_outlined,
+];
+
 var scaffoldkey =GlobalKey<ScaffoldState>();
+var _bottomNavIndex = 0;
 
     class _MyHomePageState extends State<MyHomePage> {
       @override
@@ -76,71 +86,96 @@ var scaffoldkey =GlobalKey<ScaffoldState>();
               ],
             ),
           ),
-          body: Column(
-            children: [
-          Container(
-            height: scheight/6,
-          width: scWidth,
-          color: Colors.white,
-          child: CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: true,
-            viewportFraction: 0.9,
-            aspectRatio: 1.0,
-            enlargeCenterPage: true,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () { },
+            elevation: 10,
+            backgroundColor: Colors.white,
+            child: Icon(Icons.search,color: Color(0xFF42a5f5),),
           ),
-          items:imgList
-              .map((item) => Container(
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar: AnimatedBottomNavigationBar(
+            borderColor: Colors.black26,
+            icons: iconList,
+            activeIndex: _bottomNavIndex,
+            gapLocation: GapLocation.center,
+            notchSmoothness: NotchSmoothness.defaultEdge,
+            onTap: (index) => setState(() => _bottomNavIndex = index),
+            //other params
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+
+              children: [
+            Container(
+              height: scheight/6,
             width: scWidth,
-            child: Image.network(item,fit: BoxFit.cover,),
             color: Colors.white,
-          ))
-              .toList(),
+            child: CarouselSlider(
+            options: CarouselOptions(
+              autoPlay: true,
+              viewportFraction: 0.9,
+              aspectRatio: 1.0,
+              enlargeCenterPage: true,
+            ),
+            items:imgList
+                .map((item) => Container(
+              width: scWidth,
+              child: Image.network(item,fit: BoxFit.cover,),
+              color: Colors.white,
+            ))
+                .toList(),
         ),
         ),
-              Container(
-                height: scheight*.4,
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Spacer(),
-                          HomePageOpt(optImageLink: "https://c.pxhere.com/photos/70/64/photo-15518.jpg!d",
-                              optName: "Jadroo Groceries"),
-                          Spacer(),
-                          HomePageOpt(optImageLink: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUvFQX0nYEqQurSaWPMLI7UdKLRt9qedmPkw&usqp=CAU",
-                              optName: "Home Appliance"),
-                          Spacer(),
-                          HomePageOpt(optImageLink: "https://freesvg.org/img/Mother-And-Child-Holding-Hands-Silhouette.png",
-                              optName: "Kids & Mom"),
-                          Spacer(),
-                          HomePageOpt(optImageLink: "https://webapi.robi.com.bd/uploads/2020/09/040adadb-f28b-4471-b362-93f449709ed1.jpg",
-                              optName: "Robi elite"),
-                          Spacer(),
-                          HomePageOpt(optImageLink: "https://freesvg.org/img/1425664271.png",
-                              optName: "Smartphones"),
-                          Spacer(),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Spacer(),
-                          HomePageOpt(optImageLink: "https://thumbs.dreamstime.com/z/many-used-modern-electronic-gadgets-use-white-floor-reuse-recycle-concept-top-view-164230611.jpg",
-                              optName: "Electronic Accessories"),
-                          HomePageOpt(optImageLink: "https://www.nicepng.com/png/detail/255-2550209_indian-woman-in-saree-sketch-woman-in-sari.png",
-                              optName: "Women's Fashion"),
-                          HomePageOpt(optImageLink: "https://cdn.shopify.com/s/files/1/0982/6154/products/3-Tier-Shelf-Home-Kitchen-Storage-Wire-KW19-Brown-01_grande_2x.jpg?v=1581595777",
-                              optName: "Kitchen & Dining"),
-                          Spacer(),
-                        ],
-                      )
-                    ],
+                Container(
+                  height: scheight*.4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Spacer(),
+                            HomePageOpt(optImageLink: "https://c.pxhere.com/photos/70/64/photo-15518.jpg!d",
+                                optName: "Jadroo Groceries"),
+                            Spacer(),
+                            HomePageOpt(optImageLink: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUvFQX0nYEqQurSaWPMLI7UdKLRt9qedmPkw&usqp=CAU",
+                                optName: "Home Appliance"),
+                            Spacer(),
+                            HomePageOpt(optImageLink: "https://freesvg.org/img/Mother-And-Child-Holding-Hands-Silhouette.png",
+                                optName: "Kids & Mom"),
+                            Spacer(),
+                            HomePageOpt(optImageLink: "https://webapi.robi.com.bd/uploads/2020/09/040adadb-f28b-4471-b362-93f449709ed1.jpg",
+                                optName: "Robi elite"),
+                            Spacer(),
+                            HomePageOpt(optImageLink: "https://freesvg.org/img/1425664271.png",
+                                optName: "Smartphones"),
+                            Spacer(),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Spacer(),
+                            HomePageOpt(optImageLink: "https://thumbs.dreamstime.com/z/many-used-modern-electronic-gadgets-use-white-floor-reuse-recycle-concept-top-view-164230611.jpg",
+                                optName: "Electronic Accessories"),
+                            HomePageOpt(optImageLink: "https://www.nicepng.com/png/detail/255-2550209_indian-woman-in-saree-sketch-woman-in-sari.png",
+                                optName: "Women's Fashion"),
+                            HomePageOpt(optImageLink: "https://cdn.shopify.com/s/files/1/0982/6154/products/3-Tier-Shelf-Home-Kitchen-Storage-Wire-KW19-Brown-01_grande_2x.jpg?v=1581595777",
+                                optName: "Kitchen & Dining"),
+                            Spacer(),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+                ProductDisplay(productDisplayName:"NEW ARRIVALS"),
+                SizedBox(
+                  height: 10,
+                ),
+                ProductDisplay(productDisplayName:" Flash sale"),
+
+              ],
+            ),
           ),
         );
       }
