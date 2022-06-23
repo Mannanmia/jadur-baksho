@@ -2,19 +2,19 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class HomePageOpt extends StatefulWidget {
+class CategoriesOpt extends StatefulWidget {
   String optName;
   String optImageLink;
-  HomePageOpt({Key? key,
+  CategoriesOpt({Key? key,
     required this.optImageLink,
     required this.optName,
   }) : super(key: key);
 
   @override
-  State<HomePageOpt> createState() => _HomePageOptState();
+  State<CategoriesOpt> createState() => _CategoriesOptState();
 }
 
-class _HomePageOptState extends State<HomePageOpt> {
+class _CategoriesOptState extends State<CategoriesOpt> {
   @override
   Widget build(BuildContext context) {
     double scheight= MediaQuery.of(context).size.height;

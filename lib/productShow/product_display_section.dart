@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jadroo/productShow/productShowHorizontal.dart';
+import 'package:jadroo/productShow/product_show_horizontal.dart';
 
 class ProductDisplay extends StatefulWidget {
   String productDisplayName;

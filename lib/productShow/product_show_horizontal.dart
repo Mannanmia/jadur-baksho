@@ -45,7 +45,7 @@ class _ProductShowHorizontalState extends State<ProductShowHorizontal> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(2.0),
               child: Column(
                 children: [
                   RichText(
@@ -54,6 +54,9 @@ class _ProductShowHorizontalState extends State<ProductShowHorizontal> {
                       children:[
                         TextSpan(
                           text: widget.productName,
+                          style: TextStyle(
+                            color: Colors.black,
+                          )
                         ),
 
                       ],

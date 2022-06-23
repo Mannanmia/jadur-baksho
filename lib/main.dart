@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:jadroo/provider/category_provider.dart';
+import 'package:jadroo/provider/home_provider.dart';
+import 'package:jadroo/screens/first_screen.dart';
+import 'package:provider/provider.dart';
 
-import 'homePage.dart';
-
-void main() {
-  runApp(const MyApp());
+Future <void> main() async{
+  runApp(
+    MultiProvider(providers:[
+      ChangeNotifierProvider<HomeProvider>(create: (_)=>HomeProvider()),
+     ChangeNotifierProvider<CategoryProvider>(create: (_)=>CategoryProvider()),
+    ],
+    child: MyApp(),),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -19,7 +27,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title:"Jadroo",
-      home: MyHomePage(),
+      home: HomeScreen
+        (),
     );
   }
 }
